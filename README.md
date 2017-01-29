@@ -2,6 +2,9 @@
 <h3>Java Swing Program that takes one password, and shows you all your other passwords!</h3>
 <hr />
 
+<br />
+<br />
+
 <h4>Introduction</h4>
 <hr />
 Do you ever forget your passwords? Does remembering all your business, email, and website passwords give you a headache?
