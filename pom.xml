@@ -23,6 +23,13 @@
 			<scope>compile</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.jbltd</groupId>
+			<artifactId>AutoUpdater</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -33,10 +40,11 @@
 			<resource>
 				<directory>src/main/resources</directory>
 				<includes>
-					<include>ico.ico</include>
+					<include>img.ico</include>
+					<include>jar-loading.gif</include>
 				</includes>
 			</resource>
-		</resources>	
+		</resources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -44,6 +52,17 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<SplashScreen-Image>jar-loading.gif</SplashScreen-Image>
+						</manifestEntries>
+					</archive>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -57,7 +76,6 @@
 							<goal>shade</goal>
 						</goals>
 						<configuration>
-
 							<transformers>
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">

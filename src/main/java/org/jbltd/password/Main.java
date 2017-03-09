@@ -1,14 +1,15 @@
 package org.jbltd.password;
 
+import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.Graphics2D;
+import java.awt.SplashScreen;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.InputStream;
 
-import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,6 +25,7 @@ import javax.swing.SpringLayout;
 import org.jbltd.password.common.IPassword;
 import org.jbltd.password.common.PasswordAuth;
 import org.jbltd.password.common.PasswordManager;
+import org.jbltd.update.UpdateCheck;
 
 public class Main {
 
@@ -33,16 +35,59 @@ public class Main {
     private JTextField textField;
     private static PasswordManager manager;
 
+    private static final double VERSION = 1.1;
+
+    static void renderSplashFrame(Graphics2D g, int frame) {
+	final String[] comps = { "Encryption Algorithms", "Password Manager", "Update Manager", "User Passwords",
+		"Master Password", "Useless Developer Junk" };
+	g.setComposite(AlphaComposite.Clear);
+	g.fillRect(120, 140, 200, 40);
+	g.setPaintMode();
+	g.setColor(Color.BLACK);
+	g.drawString("Loading " + comps[(frame / 5) % 6] + "...", 120, 150);
+    }
+
     /**
      * Launch the application.
      */
     public static void main(String[] args) {
+	
 	EventQueue.invokeLater(new Runnable() {
 	    public void run() {
 		try {
+
+		    final SplashScreen splash = SplashScreen.getSplashScreen();
+		    if (splash == null) {
+			return;
+		    }
+		    Graphics2D g = splash.createGraphics();
+		    if (g == null) {
+			return;
+		    }
+		    for (int i = 0; i < 30; i++) {
+			
+			renderSplashFrame(g, i);
+			splash.update();
+			try {
+			    Thread.sleep(90);
+			} catch (InterruptedException e) {
+			}
+			
+		    }
+		    splash.close();
+
 		    manager = new PasswordManager();
+
+		    UpdateCheck uc = new UpdateCheck("PasswordManager", "https://s3.amazonaws.com/jbishop98/PWM.dat",
+			    "https://s3.amazonaws.com/jbishop98/PWM_LATEST.jar", VERSION);
+		    Thread t = new Thread(uc);
+
+		    t.start();
+
 		    Main window = new Main();
 		    window.frame.setVisible(true);
+		    window.frame.toFront();
+
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}
@@ -64,16 +109,18 @@ public class Main {
 
     /**
      * Initialize the contents of the frame.
-     * @throws IOException 
+     * 
+     * @throws IOException
      */
     private void initialize() throws IOException {
 
-	//BufferedImage icon = ImageIO.read(ClassLoader.getSystemResource("/img.ico"));
-	
+	// BufferedImage icon =
+	// ImageIO.read(ClassLoader.getSystemResource("/img.ico"));
+
 	frame = new JFrame();
 	frame.setBounds(100, 100, 450, 300);
 	frame.setTitle("Password Manager by Jeremiah Bishop");
-	//frame.setIconImage(icon);
+	// frame.setIconImage(icon);
 	frame.setResizable(false);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	SpringLayout springLayout = new SpringLayout();
@@ -116,11 +163,11 @@ public class Main {
 	scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 	scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	tabbedPane.addTab("View Passwords", null, scrollPane, "View passwords you've already made");
-	
+
 	JPanel t = new JPanel();
 	t.setPreferredSize(scrollPane.getSize());
 	t.setLayout(new FlowLayout());
-	
+
 	int boundx = 10;
 	int boundy = 0;
 
@@ -138,13 +185,13 @@ public class Main {
 		}
 	    });
 	    t.add(newlbl);
-	    boundy-= 30;
+	    boundy -= 30;
 	    System.out.println("Added password.");
 	    continue;
 	}
 
 	scrollPane.getViewport().add(t);
-	
+
 	JPanel panel_2 = new JPanel();
 	panel_2.setPreferredSize(frame.getSize());
 	tabbedPane.addTab("Create Password", null, panel_2, "Create and store a new password");
@@ -183,16 +230,16 @@ public class Main {
 		String password1 = passwordField.getText();
 		String password2 = passwordField_1.getText();
 
-		if(password1.equals("") || password1 == null) {
+		if (password1.equals("") || password1 == null) {
 		    JOptionPane.showMessageDialog(null, "You must enter a password.");
 		    return;
 		}
-		
-		if(textField.getText().equals("") || textField.getText() == null) {
+
+		if (textField.getText().equals("") || textField.getText() == null) {
 		    JOptionPane.showMessageDialog(null, "You must provide a name for your password!");
 		    return;
 		}
-		
+
 		if (password1.equals(password2)) {
 
 		    IPassword password = new IPassword(textField.getText(), password1);

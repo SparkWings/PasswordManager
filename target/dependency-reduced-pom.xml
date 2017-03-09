@@ -10,7 +10,8 @@
       <resource>
         <directory>src/main/resources</directory>
         <includes>
-          <include>ico.ico</include>
+          <include>img.ico</include>
+          <include>jar-loading.gif</include>
         </includes>
       </resource>
     </resources>
@@ -22,6 +23,16 @@
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <SplashScreen-Image>jar-loading.gif</SplashScreen-Image>
+            </manifestEntries>
+          </archive>
         </configuration>
       </plugin>
       <plugin>
