@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SpringLayout;
@@ -51,7 +52,7 @@ public class Main {
      * Launch the application.
      */
     public static void main(String[] args) {
-	
+
 	EventQueue.invokeLater(new Runnable() {
 	    public void run() {
 		try {
@@ -65,14 +66,14 @@ public class Main {
 			return;
 		    }
 		    for (int i = 0; i < 30; i++) {
-			
+
 			renderSplashFrame(g, i);
 			splash.update();
 			try {
 			    Thread.sleep(90);
 			} catch (InterruptedException e) {
 			}
-			
+
 		    }
 		    splash.close();
 
@@ -179,14 +180,30 @@ public class Main {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-		    JOptionPane.showMessageDialog(null,
-			    "Your password for \"" + i.getName() + "\" is: " + i.getPassword());
+		   
+		    JPanel pv = new JPanel();
+		    
+		    JLabel l = new JLabel("Your password for "+i.getName()+" is:");
+		    
+		    JTextArea ta = new JTextArea(1, i.getPassword().length() + 1);
+	                ta.setText(i.getPassword());
+	                ta.setWrapStyleWord(true);
+	                ta.setLineWrap(true);
+	                ta.setCaretPosition(0);
+	                ta.setEditable(false);
+		    
+	            JScrollPane p = new JScrollPane(ta);
+
+	            pv.add(l);
+	            pv.add(p);
+	            
+	                
+		    JOptionPane.showMessageDialog(null, pv, "View Password", JOptionPane.INFORMATION_MESSAGE);
 
 		}
 	    });
 	    t.add(newlbl);
 	    boundy -= 30;
-	    System.out.println("Added password.");
 	    continue;
 	}
 

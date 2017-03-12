@@ -47,10 +47,8 @@ public class PasswordAuth {
 	    // PASS 2
 	    if (plainPassword.equals(input)) {
 
-		System.out.println("User passed authentication");
 		return true;
 	    } else {
-		System.out.println("User failed authentication");
 		JOptionPane.showMessageDialog(null, "Incorrect password. Try running the program again.");
 		System.exit(1);
 	    }
@@ -74,7 +72,7 @@ public class PasswordAuth {
 	File file = new File(homePath + (WIN_32 == true ? WIN_32_DELIMITER : OSX_DELIMITER) + "common.ps");
 
 	if (!file.exists()) {
-	   file.createNewFile();
+	    file.createNewFile();
 	}
 
 	BufferedWriter bw = null;
@@ -83,10 +81,10 @@ public class PasswordAuth {
 	try {
 	    fw = new FileWriter(file);
 	    bw = new BufferedWriter(fw);
-	   
+
 	    String encryptedPassword = new Encrypt(masterPassword).doEncrypt();
 	    bw.write(encryptedPassword);
-	    
+
 	} finally {
 	    bw.flush();
 	    bw.close();
@@ -94,7 +92,7 @@ public class PasswordAuth {
 
 	return true;
     }
-    
+
     public boolean createJSONFile() throws Exception {
 
 	String homePath = System.getProperty("user.home");
@@ -104,10 +102,11 @@ public class PasswordAuth {
 	String WIN_32_DELIMITER = "\\";
 	String OSX_DELIMITER = "/";
 
-	File file = new File(homePath + (WIN_32 == true ? WIN_32_DELIMITER : OSX_DELIMITER) + System.getProperty("user.name") + ".ps");
+	File file = new File(homePath + (WIN_32 == true ? WIN_32_DELIMITER : OSX_DELIMITER)
+		+ System.getProperty("user.name") + ".ps");
 
 	if (!file.exists()) {
-	   file.createNewFile();
+	    file.createNewFile();
 	}
 
 	BufferedWriter bw = null;
@@ -116,9 +115,9 @@ public class PasswordAuth {
 	try {
 	    fw = new FileWriter(file);
 	    bw = new BufferedWriter(fw);
-	   
+
 	    bw.write("{ \"passwords\": { } }");
-	    
+
 	} finally {
 	    bw.flush();
 	    bw.close();
@@ -126,5 +125,5 @@ public class PasswordAuth {
 
 	return true;
     }
-    
+
 }

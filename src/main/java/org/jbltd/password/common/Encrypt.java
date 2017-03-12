@@ -22,8 +22,6 @@ public class Encrypt {
     
     @SuppressWarnings("restriction")
     public String doEncrypt() {
-
-	System.out.println(getInput());
 	
 	try {
 	    String ALGO = "AES";

@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
+ 
 public class JSONUtil {
 
     public static void loadPasswords(PasswordManager manager) {

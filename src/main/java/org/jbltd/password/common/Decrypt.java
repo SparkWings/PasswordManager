@@ -15,19 +15,18 @@ public class Decrypt {
 	this.input = input;
 
     }
-    
+
     public String getInput() {
 	return input;
     }
 
     @SuppressWarnings("restriction")
     public String doDecrypt() {
-	
+
 	String ALGO = "AES";
 
-	byte[] keyValue =  new byte[] { 'T', 'h', 'e', 'B', 'e', 's', 't',
-		'S', 'e', 'c', 'r','e', 't', 'K', 'e', 'y' };
-	
+	byte[] keyValue = new byte[] { 'T', 'h', 'e', 'B', 'e', 's', 't', 'S', 'e', 'c', 'r', 'e', 't', 'K', 'e', 'y' };
+
 	try {
 
 	    Key key = new SecretKeySpec(keyValue, ALGO);

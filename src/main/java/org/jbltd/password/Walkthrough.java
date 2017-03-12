@@ -19,7 +19,6 @@ public class Walkthrough {
 	int option = JOptionPane.showOptionDialog(null, p, "Welcome!", JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
 		null, options, options[1]);
 
-	System.out.println(option);
 	
 	if (option == 0) {
 
