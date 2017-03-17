@@ -15,7 +15,7 @@
         </includes>
       </resource>
     </resources>
-    <finalName>Password Manager</finalName>
+    <finalName>PWM_LATEST</finalName>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -47,7 +47,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>org.jbltd.password.Main</mainClass>
+                  <mainClass>org.jbltd.password.Launcher</mainClass>
                 </transformer>
                 <transformer>
                   <resource>META-INF/spring.handlers</resource>

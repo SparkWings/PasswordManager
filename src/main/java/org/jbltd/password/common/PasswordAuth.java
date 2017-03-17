@@ -49,18 +49,17 @@ public class PasswordAuth {
 
 		return true;
 	    } else {
-		JOptionPane.showMessageDialog(null, "Incorrect password. Try running the program again.");
-		System.exit(1);
+		JOptionPane.showMessageDialog(null, "Incorrect password.");
+		return false;
 	    }
 
 	} else {
 	    throw new IOException("File does not exist.");
 	}
 
-	return false;
     }
 
-    public boolean createPasswordStoreFile(String masterPassword) throws Exception {
+    public static boolean createPasswordStoreFile(String masterPassword) throws Exception {
 
 	String homePath = System.getProperty("user.home");
 
@@ -126,4 +125,68 @@ public class PasswordAuth {
 	return true;
     }
 
+    public static String getMasterPassword() throws Exception {
+	
+	String homePath = System.getProperty("user.home");
+
+	boolean WIN_32 = System.getProperty("os.name").contains("Windows");
+
+	String WIN_32_DELIMITER = "\\";
+	String OSX_DELIMITER = "/";
+
+	File file = new File(homePath + (WIN_32 == true ? WIN_32_DELIMITER : OSX_DELIMITER) + "common.ps");
+
+	if (file.exists()) {
+
+	    // PASS 1
+	    BufferedReader br = new BufferedReader(new FileReader(file));
+	    String decrypted = "";
+	    try {
+		StringBuilder sb = new StringBuilder();
+		String line = br.readLine();
+
+		while (line != null) {
+		    sb.append(line);
+		    sb.append(System.lineSeparator());
+		    line = br.readLine();
+		}
+		String everything = sb.toString();
+		decrypted = everything;
+	    } finally {
+		br.close();
+	    }
+
+	    String plainPassword = new Decrypt(decrypted).doDecrypt();
+	    return plainPassword;
+	}
+	return null;
+    }
+    
+    public static boolean updatePasswordStoreFile(String newPassword) {
+	
+	String homePath = System.getProperty("user.home");
+
+	boolean WIN_32 = System.getProperty("os.name").contains("Windows");
+
+	String WIN_32_DELIMITER = "\\";
+	String OSX_DELIMITER = "/";
+
+	File file = new File(homePath + (WIN_32 == true ? WIN_32_DELIMITER : OSX_DELIMITER) + "common.ps");
+
+	if (file.exists()) {
+
+	    file.delete();
+	    try {
+		createPasswordStoreFile(newPassword);
+	    } catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
+	    
+	    return true;
+	}
+	return false;
+	
+    }
+    
 }

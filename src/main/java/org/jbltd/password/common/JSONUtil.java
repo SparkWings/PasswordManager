@@ -84,5 +84,42 @@ public class JSONUtil {
 
 	}
     }
+    
+    public static void removePasswordFromFile(IPassword password) {
+
+	String homePath = System.getProperty("user.home");
+
+	boolean WIN_32 = System.getProperty("os.name").contains("Windows");
+
+	String WIN_32_DELIMITER = "\\";
+	String OSX_DELIMITER = "/";
+
+	File file = new File(homePath + (WIN_32 == true ? WIN_32_DELIMITER : OSX_DELIMITER)
+		+ System.getProperty("user.name") + ".ps");
+
+	try {
+
+	    JSONParser parser = new JSONParser();
+
+	    Object o = parser.parse(new FileReader(file));
+
+	    JSONObject obj = (JSONObject) o;
+
+	    JSONObject pw = (JSONObject) obj.get("passwords");
+	    pw.remove(password.getName());
+	    
+	    try (FileWriter fw = new FileWriter(file)) {
+
+		fw.write(obj.toJSONString());
+		fw.flush();
+
+	    } catch (IOException e) {
+		e.printStackTrace();
+	    }
+
+	} catch (Exception e) {
+
+	}
+    }
 
 }
