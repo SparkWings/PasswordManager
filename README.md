@@ -14,18 +14,19 @@ Ache no more! This program allows you to safely encrypt and store your passwords
 
 <br />
 <br />
+<br />
 
 <hr />
 <h4>How it Works</h4>
 <hr />
 This program, when set up, asks for one master password in order to show you all your other stored passwords; all of which can be easily added with a simple form.
 
-In the event that the user enters their password incorrectly, the program will lock them out (1.0) and close.
-*planned: multiple incorrect attempts will lock the program permanently*
+In the event that the user -- or potential hacker -- enters the incorrect password a predefined number of times, the program will lock itself for a predefined amount of time.
 
 The program offers a simple GUI, and makes all your password management easier than ever!
 
 
+<br />
 <br />
 <br />
 
@@ -33,8 +34,7 @@ The program offers a simple GUI, and makes all your password management easier t
 <h4>Stats for Nerds</h4>
 <hr />
 
-* The GUI is built with WindowBuilder, which can be downloaded from the Eclipse marketplace (Sorry InteliJ scrubs!)
-* The password encryption is the AES algorithm, which is then stored in an unreadble format in a hidden file.
-* Most, if not all calculations and algorithms process in less than 1 second
-* Password View Buttons pyramid down -- meaning the program organizes the buttons accordingly, no clutter.
+* All passwords are stored in encrypted files in specific locations. The master password and all list passwords are stored in separate files
+* Program requires JRE 6 or higher to run
+* This program is written entirely in swing. The Automatic Update Daemon is written in Python
 
