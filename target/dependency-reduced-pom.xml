@@ -12,6 +12,7 @@
         <includes>
           <include>img.ico</include>
           <include>jar-loading.gif</include>
+          <include>smooth_circ.otf</include>
         </includes>
       </resource>
     </resources>

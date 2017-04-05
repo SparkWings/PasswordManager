@@ -3,12 +3,16 @@ package org.jbltd.password;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.SplashScreen;
+import java.io.File;
 
 import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 
 import org.jbltd.password.common.PasswordManager;
+import org.jbltd.password.util.AestheticUtil;
 import org.jbltd.update.UpdateCheck;
 
 public class Launcher {
@@ -57,8 +61,9 @@ public class Launcher {
 
 		    }
 		    splash.close();
-
-		    UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		    
+		    AestheticUtil.setUIFont(new FontUIResource(new Font("Arial", 0, 14)));
+		    AestheticUtil.setLookAndFeel();
 
 		    manager = new PasswordManager();
 
@@ -71,5 +76,5 @@ public class Launcher {
 	});
 
     }
-
+    
 }

@@ -1,6 +1,7 @@
 package org.jbltd.password;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +25,8 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 import org.jbltd.password.common.IPassword;
@@ -65,7 +68,7 @@ public class Main extends JFrame {
     private void initialize() throws IOException {
 
 	frame = this;
-	frame.setBounds(100, 100, 450, 300);
+	frame.setBounds(100, 100, 450, 575);
 	frame.setTitle("Password Manager by Jeremiah Bishop");
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setLocationRelativeTo(null);
@@ -127,6 +130,12 @@ public class Main extends JFrame {
 
 	final DefaultTableModel dm = new DefaultTableModel(data, columns);
 	final JTable table = new JTable(dm);
+
+	UIDefaults defaults = UIManager.getDefaults();
+
+	if (defaults.get("Table.alternateRowColor") == null) {
+	    defaults.put("Table.alternateRowColor", new Color(240, 240, 240));
+	}
 
 	table.setRowHeight(30);
 
@@ -206,21 +215,20 @@ public class Main extends JFrame {
 	new ButtonColumn(table, showPassword, 1);
 
 	JScrollPane scroll;
-	
+
 	if (table.getRowCount() < 1) {
 
 	    JPanel jp = new JPanel();
 	    jp.setPreferredSize(frame.getSize());
 	    jp.setLayout(null);
-	    
+
 	    JLabel jl = new JLabel("No passwords... :(");
 	    jl.setBounds(160, 10, 150, 20);
 
 	    jp.add(jl);
-	    
+
 	    scroll = new JScrollPane(jp);
-	    
-	    
+
 	} else {
 	    scroll = new JScrollPane(table);
 	}
