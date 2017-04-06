@@ -1,3 +1,4 @@
 *.lst
 *.class
 *.jar
+/target/UPDATE.py

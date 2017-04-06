@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -32,24 +34,21 @@ public class ChangeMasterPasswordScreen extends JFrame {
     private JFrame frame;
     private JPasswordField passwordField;
     private JPasswordField passwordField_1;
-    
+
     private JPanel contentPane;
-    
+
     public ChangeMasterPasswordScreen(PasswordManager manager) {
-	
 
 	this.manager = manager;
-	
-	
+
 	setTitle("Password Manager - Master Password Editor");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setBounds(100, 100, 450, 300);
 
-	
 	frame = this;
 
 	frame.setLocationRelativeTo(null);
-	
+
 	JPanel panel_2 = new JPanel();
 	panel_2.setPreferredSize(frame.getSize());
 	panel_2.setLayout(null);
@@ -59,23 +58,41 @@ public class ChangeMasterPasswordScreen extends JFrame {
 	JMenu cancel = new JMenu("Go Back");
 	cancel.setMnemonic(KeyEvent.VK_G);
 
-	cancel.addMenuListener(new MenuListener() {
+	cancel.addMouseListener(new MouseListener() {
 
 	    @Override
-	    public void menuSelected(MenuEvent e) {
+	    public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
 
-		frame.dispose();
+	    }
+
+	    @Override
+	    public void mousePressed(MouseEvent e) {
+
 		new Main(manager);
+		frame.dispose();
+		return;
 
 	    }
 
 	    @Override
-	    public void menuDeselected(MenuEvent e) {
+	    public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 
 	    }
 
 	    @Override
-	    public void menuCanceled(MenuEvent e) {
+	    public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	    }
+
+	    @Override
+	    public void mouseClicked(MouseEvent e) {
+
+		new Main(manager);
+		frame.dispose();
+		return;
 
 	    }
 	});
@@ -113,11 +130,11 @@ public class ChangeMasterPasswordScreen extends JFrame {
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
 		    finishSetup();
-		    
+
 		}
 	    }
 	};
-	
+
 	passwordField_1 = new JPasswordField();
 	passwordField_1.setBounds(190, 92, 182, 20);
 	passwordField_1.addKeyListener(keyListener);
@@ -125,17 +142,16 @@ public class ChangeMasterPasswordScreen extends JFrame {
 
 	JButton btnNewButton = new JButton("Confirm");
 	btnNewButton.addActionListener(new ActionListener() {
-	    @SuppressWarnings({ })
+	    @SuppressWarnings({})
 	    public void actionPerformed(ActionEvent e) {
 
 		finishSetup();
-		
+
 	    }
 	});
 	btnNewButton.setBounds(135, 199, 150, 23);
 	panel_2.add(btnNewButton);
 
-	
 	btnNewButton.setVisible(true);
 	lblConfirmNewPassword.setVisible(true);
 	lblNewPassword.setVisible(true);
@@ -149,11 +165,10 @@ public class ChangeMasterPasswordScreen extends JFrame {
 
 	frame.setVisible(true);
 
-	
     }
 
     private void finishSetup() {
-	
+
 	String password1 = passwordField.getText();
 	String password2 = passwordField_1.getText();
 
@@ -164,9 +179,8 @@ public class ChangeMasterPasswordScreen extends JFrame {
 
 	if (password1.equals(password2)) {
 
-
 	    PasswordAuth.updatePasswordStoreFile(password1);
-	    
+
 	    JOptionPane.showMessageDialog(null, "Success!");
 
 	    frame.dispose();
@@ -178,6 +192,5 @@ public class ChangeMasterPasswordScreen extends JFrame {
 	    passwordField_1.setText(null);
 	}
 
-	
     }
 }
