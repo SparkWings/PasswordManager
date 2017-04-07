@@ -78,7 +78,7 @@ public class Launcher {
 
 		    splash.close();
 
-		    AestheticUtil.setUIFont(new FontUIResource(new Font("Arial", 0, 14)));
+		    AestheticUtil.setUIFont(new FontUIResource(new Font("Arial", 0, 13)));
 		    AestheticUtil.setLookAndFeel();
 
 		    manager = new PasswordManager();
