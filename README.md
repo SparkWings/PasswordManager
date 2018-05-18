@@ -51,6 +51,6 @@ For more help on how to use the program, feel free to use the Wiki tab for tutor
 
 - Dependencies Used:
     - JSON
-    - ~AutoUpdater (DEPRECATED IN v1.0 RELEASE)~
+    - ~AutoUpdater~ (DEPRECATED IN v1.0 RELEASE)
     
 - In Development Since: 2017 (Constant: No, this is a boredom manifested application)
