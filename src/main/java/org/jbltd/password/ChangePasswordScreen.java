@@ -1,3 +1,23 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 package org.jbltd.password;
 
 import java.awt.Color;
@@ -259,3 +279,4 @@ public class ChangePasswordScreen extends JFrame {
 
 
 }
+

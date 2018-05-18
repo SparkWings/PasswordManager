@@ -1,3 +1,7 @@
+
+
+
+
 package org.jbltd.password.common;
 
 public class IPassword {
