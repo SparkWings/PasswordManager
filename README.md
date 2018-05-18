@@ -1,40 +1,56 @@
-# Password Manager
-<h3>Java Swing Program that takes one password, and shows you all your other passwords!</h3>
+# Password Manager v1.0 - RELEASE #
+The Java program that takes one password in order to show you all your passwords!
+
+-----------------------------------
 
 
-<br />
-<br />
+<h2>Introduction:</h2>
+Have you ever had trouble remembering passwords? Have you ever been frustrated with yourself because you couldn't remember a password?
+More importantly, have you ever wanted a program to manage your passwords, but didn't want to pay high dollar for one?
 
-<hr />
-<h4>Introduction</h4>
-<hr />
-Do you ever forget your passwords? Does remembering all your business, email, and website passwords give you a headache?
-
-Ache no more! This program allows you to safely encrypt and store your passwords where you can only access them with one <b>master</b> password.
-
-<br />
-<br />
-<br />
-
-<hr />
-<h4>How it Works</h4>
-<hr />
-This program, when set up, asks for one master password in order to show you all your other stored passwords; all of which can be easily added with a simple form.
-
-In the event that the user -- or potential hacker -- enters the incorrect password a predefined number of times, the program will lock itself for a predefined amount of time.
-
-The program offers a simple GUI, and makes all your password management easier than ever!
+<b>Introducing the solution -- My Password Manager.</b>
 
 
-<br />
-<br />
-<br />
+<h2>How It Works:</h2>
 
-<hr />
-<h4>Stats for Nerds</h4>
-<hr />
+This program contains the culmination of my programming abilities and security knowledge in order to provide you with a utliity program to store all of your passwords!
 
-* All passwords are stored in encrypted files in specific locations. The master password and all list passwords are stored in separate files
-* Program requires JRE 6 or higher to run
-* This program is written entirely in swing. The Automatic Update Daemon is written in Python
+The program is written completely in executable Java (Not to be confused with JavaScript). It uses Java Swing in order to create a GUI for your viewing pleasure.
 
+When the program first boots, you are prompted for your master password. Upon successful authentication, the program loads a table containing all your stored passwords for easy access. To lock the program, just close it! No worries about hackers gaining access to your data.
+
+When you create a password, it is encrypted and stored in a file location known only to the program. For security reasons, the encryption key is also known only to the program. The files used to store the Password Manager's data and the application itself are kept completely separate from each other on your computer. Where you place the actual application will not affect configuration of the program -- it works for you!
+
+For more help on how to use the program, feel free to use the Wiki tab for tutorials.
+
+~ J
+
+
+
+
+
+
+
+
+<h2>Programming Stats (For my fellow nerds):</h2>
+- Encryption Algorithm: AES
+- For security reasons, the key used for the Encryption and Decryption of data is known only to the program due to randomization. During program setup, keys and file locations are predetermined by the program itself.
+
+
+- GUI: Java Swing
+
+
+- IDE Used: Eclipse
+
+
+- Java Version: 8
+
+
+- Build Utility: Maven
+
+
+- Dependencies Used:
+    - JSON
+    - ~AutoUpdater~ (DEPRECATED IN v1.0 RELEASE)
+    
+- In Development Since: 2017 (Constant: No, this is a boredom manifested application)
