@@ -1,5 +1,4 @@
 
-
 package org.jbltd.password.common;
 
 import java.util.ArrayList;
@@ -15,17 +14,24 @@ public class PasswordManager {
 
     public PasswordManager() {
 	passwords = new ArrayList<IPassword>();
-	
+
 	PasswordUtil p = new PasswordUtil();
-	
+
 	if (!p.doesConfigExist()) {
-	    Walkthrough w = new Walkthrough(this);
-	    w.toFront();
+
+	    try {
+		p.createConfig();
+		Walkthrough w = new Walkthrough(this);
+		w.toFront();
+	    } catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
 	} else {
 	    new ILoginScreen(this);
+	    JSONUtil.loadPasswords(this);
 	}
 
-	JSONUtil.loadPasswords(this);
     }
 
     public List<IPassword> getPasswords() {
@@ -57,11 +63,3 @@ public class PasswordManager {
     }
 
 }
-
-
-
-
-
-
-
-

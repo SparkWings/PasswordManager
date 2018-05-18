@@ -72,6 +72,7 @@ public class PasswordUtil {
 	File file = new File((WIN_32 == true ? WIN_32_BASE_DIR : OSX_BASE_DIR) + fileName + ".ps");
 
 	if (!file.exists()) {
+	    file.getParentFile().mkdirs();
 	    file.createNewFile();
 	}
 
@@ -177,7 +178,7 @@ public class PasswordUtil {
 		fw.close();
 
 	    } catch (Exception e) {
-
+		e.printStackTrace();
 	    }
 
 	    return true;

@@ -38,7 +38,7 @@ import org.jbltd.update.UpdateCheck;
 
 public class Launcher {
 
-    private static final double VERSION = 1.1;
+    private static final double VERSION = 1.2;
 
     static void renderSplashFrame(Graphics2D g, int frame) {
 	final String[] comps = { "Encryption Algorithms", "Password Manager", "Update Manager", "User Passwords",
@@ -70,8 +70,8 @@ public class Launcher {
 		try {
 
 		    UpdateCheck uc = new UpdateCheck(FilenameUtils.separatorsToSystem(decodedPath).substring(1),
-			    "https://s3.amazonaws.com/jbishop98/PWM.dat",
-			    "https://s3.amazonaws.com/jbishop98/PWM_LATEST.jar", VERSION);
+			    "https://s3.amazonaws.com/jbpwm/PWM.dat",
+			    "https://s3.amazonaws.com/jbpwm/PWM_LATEST.jar", VERSION);
 		    Thread t = new Thread(uc);
 
 		    t.start();

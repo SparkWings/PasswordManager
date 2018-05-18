@@ -152,7 +152,6 @@ public class Walkthrough extends JFrame {
     private void finishSetup() {
 	
 	new PasswordUtil().generateKey();
-	
 	String password1 = _passwordField.getText();
 	String password2 = _passwordField_1.getText();
 
@@ -164,6 +163,7 @@ public class Walkthrough extends JFrame {
 	if (password1.equals(password2)) {
 	    try {
 		new PasswordUtil().createPasswordStoreFile(password1);
+		
 	    } catch (Exception ex) {
 		// TODO Auto-generated catch block
 		ex.printStackTrace();

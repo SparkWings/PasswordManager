@@ -1,51 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 package org.jbltd.password;
 
 import java.awt.BorderLayout;
@@ -95,11 +48,10 @@ public class Main extends JFrame {
      * 
      */
     private static final long serialVersionUID = -7091900718104919506L;
-    
+
     private JFrame _frame;
     private PasswordManager _manager;
-    
-    
+
     public Main(PasswordManager manager) {
 
 	this._manager = manager;
@@ -155,6 +107,18 @@ public class Main extends JFrame {
 	});
 	newMPwd.setMnemonic(KeyEvent.VK_C);
 	file.add(newMPwd);
+
+	JMenuItem lock = new JMenuItem("Lock");
+	lock.addActionListener(new ActionListener() {
+
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+		_frame.dispose();
+		new ILoginScreen(_manager);
+
+	    }
+	});
+	file.add(lock);
 
 	menu.add(file);
 
