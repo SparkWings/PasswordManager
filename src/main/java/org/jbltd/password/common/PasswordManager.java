@@ -2,6 +2,7 @@
 package org.jbltd.password.common;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +31,7 @@ public class PasswordManager {
 	} else {
 	    new ILoginScreen(this);
 	    JSONUtil.loadPasswords(this);
+	    Collections.sort(passwords, new IPasswordSorter());
 	}
 
     }

@@ -9,6 +9,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -24,10 +26,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.SwingUtilities;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import org.jbltd.password.common.IPassword;
 import org.jbltd.password.common.PasswordManager;
@@ -142,7 +148,6 @@ public class Main extends JFrame {
 
 	final DefaultTableModel dm = new DefaultTableModel(data, columns);
 	final JTable table = new JTable(dm);
-
 	UIDefaults defaults = UIManager.getDefaults();
 
 	if (defaults.get("Table.alternateRowColor") == null) {
